@@ -1,0 +1,276 @@
+/* 
+MIT License
+
+Copyright (c) 2017 dmitrizzle
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE. 
+
+Styles used in this app were taken from:
+https://github.com/dmitrizzle
+*/
+
+/* User Bubble Styles */
+.bubble,
+.bubble-typing {
+  color: #212121;
+  background: rgba(255, 255, 255, 0.84);
+  padding: 8px 16px;
+  border-radius: 5px 15px 15px 15px;
+  font-weight: 400;
+  text-transform: none;
+  text-align: left;
+  font-size: 16px;
+  letter-spacing: .5px;
+  margin: 0 0 2px 0;
+  max-width: 65%;
+  float: none;
+  clear: both;
+  line-height: 1.5em;
+  word-break: break-word;
+  transform-origin: left top;
+  transition: all 200ms;
+  box-sizing: content-box;
+}
+.bubble .bubble-content {
+  transition: opacity 150ms;
+}
+.bubble:not(.say) .bubble-content {
+  opacity: 0;
+}
+.bubble-typing.imagine,
+.bubble.imagine {
+  transform: scale(0);
+  transition: all 200ms, height 200ms 1s, padding 200ms 1s;
+}
+.bubble.imagine {
+  margin: 0;
+  height: 0;
+  padding: 0;
+}
+
+/* style media that's inside bubbles */
+.bubble .bubble-content img {
+  width: calc(100% + 32px);
+  /* max-width: 100%; */
+  margin: -8px -16px;
+  overflow: hidden;
+  display: block;
+  border-radius: 15px 5px 15px 15px;
+}
+
+/* .bubble-img {
+  max-width: 90%;
+  margin: -8px -16px;
+  overflow: hidden;
+  display: block;
+  border-radius: 5px 15px 15px 15px;
+} */
+
+/* interaction recall styles */
+.bubble.history,
+.bubble.history .bubble-content,
+.bubble.history .bubble-content .bubble-button,
+.bubble.history .bubble-content .bubble-button:hover {
+  transition: all 0ms !important;
+}
+.bubble.history {
+  opacity: .25;
+}
+
+/* Reply Bubble styles */
+
+.bubble.reply {
+    background: transparent;
+    box-shadow: none;
+    float: right;
+    position: relative;
+    transform-origin: right top;
+    margin: 8px 0 10px;
+    padding: 0;
+    max-width: 65%;
+  }
+  .bubble.reply.history {
+    margin: 0 0 2px 0; /* remembered bubbles do not need to stand out via margin */
+  }
+  .bubble.reply.say {
+    background: rgba(0, 6, 63, 0.69);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 15px 5px 15px 15px;
+    margin-left: 2px;
+    text-align: center;
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+    transition: all 200ms;
+    text-decoration: none;
+    word-break: normal;
+      box-sizing: content-box;
+    /* animation-duration: 1s; */
+    animation-name: "animate-reply";
+    animation-play-state: paused;
+    animation-fill-mode: forwards;
+    /* opacity: 0; */
+    transform: translate3d(0px, 0px, 0px);
+    animation-delay: -3s;
+    -ms-animation-delay: -3;
+    -webkit-animation-delay: -3s;
+  }
+  .bubble.reply .bubble-content {
+    transition: all 200ms;
+  }
+  .bubble.reply .bubble-content .bubble-button {
+    background: rgba(49, 49, 70, 0.67);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 15px 15px 5px 5px;
+    margin-left: 2px;
+    text-align: center;
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+    transition: all 200ms;
+    text-decoration: none;
+    word-break: normal;
+      box-sizing: content-box;
+    /* animation-duration: 1s; */
+    animation-name: "animate-reply";
+    animation-play-state: paused;
+    animation-fill-mode: forwards;
+    /* opacity: 0; */
+    transform: translate3d(0px, 0px, 0px);
+    animation-delay: -3s;
+    -ms-animation-delay: -3;
+    -webkit-animation-delay: -3s;
+  }
+  @keyframes animate-reply {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .bubble.reply.say .bubble-content .bubble-button {
+    animation-play-state: running;
+    margin-top: 3px;
+    min-height: 24px;
+    overflow: hidden;
+  }
+  
+  .bubble.reply .bubble-content .bubble-button:first-child {
+    border-radius: 15px 15px 15px 5px;
+    margin-left: 2px;
+  }
+  .bubble.reply .bubble-content .bubble-button:last-child,
+  .bubble.reply .bubble-content .bubble-button.bubble-pick {
+    border-radius: 15px 15px 5px 15px;
+  }
+  .bubble.reply.bubble-picked .bubble-content .bubble-button {
+    transform: scale(0) translate3d(0px, 0px, 0px);
+    padding: 0;
+  }
+  .bubble.reply:not(.bubble-picked) .bubble-content .bubble-button:hover,
+  .bubble.reply .bubble-content .bubble-button.bubble-pick {
+    background: rgba(44, 44, 44, 1);
+    transform: scale(1) translate3d(0px, 0px, 0px);
+    padding: 8px 16px;
+    height: auto;
+  }
+  
+  /* interaction recall styles */
+  .bubble.history .bubble-content .bubble-button,
+  .bubble.history.reply:not(.bubble-picked) .bubble-content .bubble-button:hover,
+  .bubble.history.reply .bubble-content .bubble-button.bubble-pick {
+    background: rgba(44, 44, 44, 0.67);
+    cursor: default;
+  }
+  
+  /* input fields for bubbles */
+  .bubble .bubble-content input {
+    background: linear-gradient(193deg, #1faced, #5592dc 100%) !important;
+    box-shadow: 0 0px 1px 0px #000, 0 -1px 0 0px rgba(255, 255, 255, 0.38) inset;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.35);
+    border: 0;
+    outline: 0;
+  }
+  .bubble .bubble-content input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: rgba(255, 255, 255, .5);
+    text-shadow: none;
+  }
+  .bubble .bubble-content input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: rgba(255, 255, 255, .5);
+    text-shadow: none;
+  }
+  .bubble .bubble-content input:read-only {
+    background: linear-gradient(166deg, #48121d, #0d4058 100%) !important;
+  }
+  
+  /* Setup styles */
+  .bubble-container {
+    /* background: #dcdde0; */
+    background: rgba(243, 243, 235, 0.849);
+    height: 900px;
+    /* height: 520px; */
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+  }
+  .bubble-wrap {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: -17px;
+    padding: 10px calc(17px + 10px) 30px 10px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+
+  /* typing hints */
+  .bubble-typing {
+    width: 38px;
+    padding: 12px 16px;
+    height: 8px;
+  }
+  .dot {
+    background-color: rgb(255,255,255);
+    float: left;
+    height: 7px;
+    margin-left: 4px;
+    width: 7px;
+    animation-name: bounce_dot;
+    animation-duration: 2.24s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    border-radius: 5px;
+  }
+  .dot_1 { animation-delay: 0.45s; }
+  .dot_2 { animation-delay: 1.05s; }
+  .dot_3 { animation-delay: 1.35s; }
+  @keyframes bounce_dot {
+    0% {}
+    50% { background-color:rgb(0,0,0); }
+    100% {}
+  }
